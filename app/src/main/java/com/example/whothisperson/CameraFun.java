@@ -32,14 +32,4 @@ public class CameraFun{
         }
     }
     */
-    public static Camera getCameraInstance(){
-        Camera c = null;
-        try {
-            c = Camera.open();
-        }
-        catch(Exception e){
-            //Camera not available
-        }
-        return c;
-    }
 }
