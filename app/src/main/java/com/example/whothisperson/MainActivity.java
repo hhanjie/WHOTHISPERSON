@@ -14,14 +14,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView imageView;
+    private ImageView imageview;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.imageView = (ImageView)this.findViewById(R.id.imageView);
+        this.imageview = (ImageView)this.findViewById(R.id.imageView);
         Button photoButton = (Button) this.findViewById(R.id.shutterButton);
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
+            imageview.setImageBitmap(imageBitmap);
         }
     }
 }
