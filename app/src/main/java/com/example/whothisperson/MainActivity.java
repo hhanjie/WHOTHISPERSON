@@ -1,7 +1,6 @@
 package com.example.whothisperson;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         //new processCelebrityTask().execute(bitmap);
 
-        this.imageview = this.findViewById(R.id.imageView);
+        this.imageview = this.findViewById(R.id.celebPic);
         Button photoButton = this.findViewById(R.id.shutterButton);
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
