@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
             bitmaps[0].compress(Bitmap.CompressFormat.PNG, 100, file);
             ByteBuffer bytebuffer = ByteBuffer.wrap(file.toByteArray());
 
-            BasicAWSCredentials credentials = new BasicAWSCredentials("AKIATQW2OYGQIU4YAEVQ", "rYENZIX3e9gbVCDhpJrMEg2fRr1HPp0YKRTIqTSU");
+            BasicAWSCredentials credentials = new BasicAWSCredentials("ACCESSKEY", "SECRETKEY");
             AmazonRekognitionClient client = new AmazonRekognitionClient(credentials);
             RecognizeCelebritiesRequest request = new RecognizeCelebritiesRequest();
 
