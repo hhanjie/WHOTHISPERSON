@@ -39,4 +39,6 @@ dependencies {
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     //Amazon Rekognition SDK
     implementation 'com.amazonaws:aws-android-sdk-rekognition:2.16.1'
+    //Jsoup dependency
+    implementation 'org.jsoup:jsoup:1.11.1'
 }

@@ -1,7 +1,6 @@
 package com.example.whothisperson;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import com.amazonaws.services.rekognition.model.RecognizeCelebritiesRequest;
 import com.amazonaws.services.rekognition.model.RecognizeCelebritiesResult;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
 import android.content.Intent;
@@ -23,6 +23,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView imageview;
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         List<Celebrity> list = result.getCelebrityFaces();
         for (Celebrity celebrity : list) {
             Log.d("Celeb_Info", celebrity.getName());
+            new celebrityInfoTask().execute(celebrity);
+
         }
     }
     @Override
@@ -77,6 +84,38 @@ public class MainActivity extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+        }
+    }
+
+    private class celebrityInfoTask extends AsyncTask<Celebrity, Void, Void> {
+        @Override
+        protected Void doInBackground(Celebrity... celebrities) {
+            try {
+                List<String> list = celebrities[0].getUrls();
+                String url = list.get(0);
+                Document document = Jsoup.connect(url).get();
+                Element recentWorks = document.getElementById("filmography");
+                Element knownFor = document.getElementById("knownfor");
+                Element namePoster = document.getElementById("name-poster");
+
+                //Known For Movies
+                for (int i = 0; i < 4; i++) {
+
+                }
+
+                //Recent Works Movies
+                for (int i = 0; i < 5; i++ ) {
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void atask) {
 
         }
     }
