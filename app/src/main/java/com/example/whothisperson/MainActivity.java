@@ -119,11 +119,99 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //Known For Movies
-                for (int i = 0; i < 4; i++) {
-                    Elements knownforTitleRole = knownFor.getElementsByClass("knownfor-elipsis");
-                    Element image = knownFor.getElementsByAttributeStarting("title").first();
+                //Role
+                Element knownforTitleRole = knownFor.getElementsByClass("knownfor-title-role").first();
 
-                }
+                //Movie Poster
+                Element image = knownFor.getElementsByTag("img").first();
+                String imagesrc = image.attr("src");
+                ImageView imageview = findViewById(R.id.imageView0);
+                Picasso.get().load(imagesrc).into(imageview);
+
+                //Title
+                String title = knownforTitleRole.attr("title");
+                ((TextView)findViewById(R.id.name0)).setText(title);
+
+                //Character
+                Element knownforelipsis = knownforTitleRole.getElementsByClass("knownfor-elipsis").first();
+                String character = knownforelipsis.ownText();
+                ((TextView)findViewById(R.id.char0)).setText(character);
+
+                //Date
+                Element knownforyear = knownFor.getElementsByClass("knownfor-year").first();
+                String date = knownforyear.ownText();
+                ((TextView)findViewById(R.id.date0)).setText(date);
+
+
+                //Second Movie
+                knownforTitleRole = knownforTitleRole.nextElementSibling();
+
+                //Movie Poster
+                image = image.nextElementSibling();
+                imagesrc = image.attr("src");
+                imageview = findViewById(R.id.imageView1);
+                Picasso.get().load(imagesrc).into(imageview);
+
+                //Title
+                title = knownforTitleRole.attr("title");
+                ((TextView)findViewById(R.id.name1)).setText(title);
+
+                //Character
+                knownforelipsis = knownforTitleRole.getElementsByClass("knownfor-elipsis").first();
+                character = knownforelipsis.ownText();
+                ((TextView)findViewById(R.id.char1)).setText(character);
+
+                //Date
+                knownforyear = knownforyear.nextElementSibling();
+                date = knownforyear.ownText();
+                ((TextView)findViewById(R.id.date1)).setText(date);
+
+                //Third Movie
+                knownforTitleRole = knownforTitleRole.nextElementSibling();
+
+                //Movie Poster
+                image = image.nextElementSibling();
+                imagesrc = image.attr("src");
+                imageview = findViewById(R.id.imageView2);
+                Picasso.get().load(imagesrc).into(imageview);
+
+                //Title
+                title = knownforTitleRole.attr("title");
+                ((TextView)findViewById(R.id.name2)).setText(title);
+
+                //Character
+                knownforelipsis = knownforTitleRole.getElementsByClass("knownfor-elipsis").first();
+                character = knownforelipsis.ownText();
+                ((TextView)findViewById(R.id.char2)).setText(character);
+
+                //Date
+                knownforyear = knownforyear.nextElementSibling();
+                date = knownforyear.ownText();
+                ((TextView)findViewById(R.id.date2)).setText(date);
+
+                //Fourth Movie
+                knownforTitleRole = knownforTitleRole.nextElementSibling();
+
+                //Movie Poster
+                image = image.nextElementSibling();
+                imagesrc = image.attr("src");
+                imageview = findViewById(R.id.imageView3);
+                Picasso.get().load(imagesrc).into(imageview);
+
+                //Title
+                title = knownforTitleRole.attr("title");
+                ((TextView)findViewById(R.id.name3)).setText(title);
+
+                //Character
+                knownforelipsis = knownforTitleRole.getElementsByClass("knownfor-elipsis").first();
+                character = knownforelipsis.ownText();
+                ((TextView)findViewById(R.id.char3)).setText(character);
+
+                //Date
+                knownforyear = knownforyear.nextElementSibling();
+                date = knownforyear.ownText();
+                ((TextView)findViewById(R.id.date3)).setText(date);
+
 
                 //Recent Works Movies
                 for (int i = 0; i < 5; i++ ) {
