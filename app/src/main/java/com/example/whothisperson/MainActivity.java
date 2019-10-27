@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (imageview != null) {
+                    //startActivity(new Intent(MainActivity.this, ));
+                }
                 dispatchTakePictureIntent();
                 Toast toast = Toast.makeText(getApplicationContext(),"There is response",(int)10);
                 toast.show();
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         for (Celebrity celebrity : list) {
             Log.d("Celeb_Info", celebrity.getName());
             new celebrityInfoTask().execute(celebrity);
+
 
         }
     }
@@ -214,9 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //Recent Works Movies
-                for (int i = 0; i < 5; i++ ) {
 
-                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
