@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageview;
     String currentPhotoPath;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static String AUTHORITY = BuildConfig.APPLICATION_ID+".fileprovider";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
+                Toast toast = Toast.makeText(getApplicationContext(),"There is response",(int)10);
+                toast.show();
+                Log.d("OnClick", "Entered");
             }
         });
     }
@@ -55,39 +60,48 @@ public class MainActivity extends AppCompatActivity {
     private void dispatchTakePictureIntent(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            /*
+            Log.d("TakePic", "Entered");
             // Create the File where the photo should go
             File photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
+                Log.d("Error","Cachted");
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Log.d("entered successfully", "Intent");
-                Uri photoURI = FileProvider.getUriForFile(getApplicationContext(),
-                        "${applicationId}.file",
-                        photoFile);
+                Uri photoURI;
+                    photoURI = FileProvider.getUriForFile(this,
+                            AUTHORITY,
+                            photoFile);
+
                 Log.d("runs on Uri", "successful");
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
+            }*/
         }
     }
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd", Locale.US).format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "my_images");
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-
+        if(storageDir == null || image == null){
+            Log.d("ErrorCreate","Entered");
+        }
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
+        Log.d(currentPhotoPath, "CurrentPhotoPath");
         return image;
     }
 
