@@ -12,6 +12,7 @@ import com.amazonaws.services.rekognition.model.Celebrity;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.services.rekognition.model.RecognizeCelebritiesRequest;
 import com.amazonaws.services.rekognition.model.RecognizeCelebritiesResult;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -38,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.downey);
-
-        //new processCelebrityTask().execute(bitmap);
 
         this.imageview = this.findViewById(R.id.celebPic);
         Button photoButton = this.findViewById(R.id.shutterButton);
@@ -95,12 +94,34 @@ public class MainActivity extends AppCompatActivity {
                 List<String> list = celebrities[0].getUrls();
                 String url = list.get(0);
                 Document document = Jsoup.connect(url).get();
+
                 Element recentWorks = document.getElementById("filmography");
-                Element knownFor = document.getElementById("knownfor");
+                Element knownFor = document.getElementsByClass("knownfor-title").first();
                 Element namePoster = document.getElementById("name-poster");
+                Element resumeTeaser = document.getElementById("name-bio-text");
+
+                //Name Poster
+                String src = namePoster.attr("src");
+                ImageView view = findViewById(R.id.celebPic);
+                Picasso.get().load(src).into(view);
+
+                //Name
+                String name = celebrities[0].getName();
+                ((TextView)findViewById(R.id.celebName)).setText(name);
+
+                //Person Accuracy
+                String accuracy = celebrities[0].getMatchConfidence().toString();
+                ((TextView)findViewById(R.id.celebAcc)).setText(accuracy);
+
+                //Person Background
+                String bio = resumeTeaser.ownText();
+                ((TextView)findViewById(R.id.background)).setText(bio);
+
 
                 //Known For Movies
                 for (int i = 0; i < 4; i++) {
+                    Elements knownforTitleRole = knownFor.getElementsByClass("knownfor-elipsis");
+                    Element image = knownFor.getElementsByAttributeStarting("title").first();
 
                 }
 
