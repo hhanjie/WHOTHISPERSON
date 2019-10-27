@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         //new processCelebrityTask().execute(bitmap);
 
-        this.imageview = this.findViewById(R.id.imageView);
+        this.imageview = this.findViewById(R.id.celebPic);
         Button photoButton = this.findViewById(R.id.shutterButton);
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
