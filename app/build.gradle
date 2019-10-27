@@ -16,6 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion = '28.0.3'
 }
 
 dependencies {
@@ -31,9 +32,11 @@ apply plugin: 'com.amazonaws.appsync'
 
 dependencies {
     //Base SDK
-    implementation 'com.amazonaws:aws-android-sdk-core:2.15.+'
+    implementation 'com.amazonaws:aws-android-sdk-core:2.16.1'
     //AppSync SDK
-    implementation 'com.amazonaws:aws-android-sdk-appsync:2.8.+'
-    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+    implementation 'com.amazonaws:aws-android-sdk-appsync:2.10.1'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.2'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    //Amazon Rekognition SDK
+    implementation 'com.amazonaws:aws-android-sdk-rekognition:2.16.1'
 }

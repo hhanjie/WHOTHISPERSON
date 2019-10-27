@@ -1,0 +1,14 @@
+{
+    "awsrekog": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-whothisperson-awsrekog-124823-authRole",
+            "UnauthRoleArn": "arn:aws:iam::242050056608:role/amplify-whothisperson-awsrekog-124823-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::242050056608:role/amplify-whothisperson-awsrekog-124823-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-whothisperson-awsrekog-124823-deployment",
+            "UnauthRoleName": "amplify-whothisperson-awsrekog-124823-unauthRole",
+            "StackName": "amplify-whothisperson-awsrekog-124823",
+            "StackId": "arn:aws:cloudformation:eu-west-1:242050056608:stack/amplify-whothisperson-awsrekog-124823/92d9ddd0-f829-11e9-bf9a-02c03455965c"
+        }
+    }
+}
