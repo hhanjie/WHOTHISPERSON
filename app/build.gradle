@@ -28,7 +28,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-apply plugin: 'com.amazonaws.appsync'
+//apply plugin: 'com.amazonaws.appsync'
 
 dependencies {
     //Base SDK
