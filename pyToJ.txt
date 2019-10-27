@@ -1,0 +1,39 @@
+import org.python.core.PyInstance;  
+import org.python.util.PythonInterpreter;  
+
+public class pyToJ
+{
+
+    PythonInterpreter interpreter = null;
+    
+    public pyToJ()
+    {
+        pythonInterpreter.initialize(System.getProperties(),
+                                     System,getProperties(),
+                                     new String[0]);
+                                     
+        this.interpreter = new PythonInterpreter();
+    }
+
+    public static void main(String gargs[])
+    {
+        InterpreterExample ie = new InterpreterExample();
+        
+        ie.execfile("scraper.py"); //INSERT PROGRAM FILE NAME
+        
+        PyInstance scraper = ie.createClass("Scraper", "None");
+        
+        scraper.invoke("run");
+    }
+    
+    void execfile(final String filename)
+    {
+        this.interpreter.execfile(fileName);
+    }
+    
+    PyInstance createClass(final String className, final String opts)
+    {
+        return (PyInstance) this.interpreter.eval(className + "(" + opts + ")");
+    }
+    
+}
